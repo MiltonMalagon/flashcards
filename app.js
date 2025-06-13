@@ -41,5 +41,9 @@ app.get('/cards', (req, res) => {
 app.get('/sandbox', (req, res) => {
   res.render('sandbox', {
     firstNames, lastNames
-  })
-})
+  });
+});
+
+app.get('/hello', (req, res) => {
+  res.render('hello');
+});
