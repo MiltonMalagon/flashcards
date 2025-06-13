@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
@@ -20,6 +21,14 @@ const lastNames = [
 app.listen(port, () => {
   console.log(`The app is running on localhost: ${port}`);
 });
+
+app.use(bodyParser.urlencoded({extended: false}));
+//Body Parser
+// let bodyString = ''
+//   req.on('data', chunk => bodyString += chunk.toString());
+//   req.on('end', () => {
+//     console.log(bodyString);
+//   });
 
 app.set('view engine', 'pug');
 
@@ -46,4 +55,10 @@ app.get('/sandbox', (req, res) => {
 
 app.get('/hello', (req, res) => {
   res.render('hello');
+});
+
+app.post('/hello', (req, res) => {
+  // console.dir(req.body);
+  res.render('hello', {name: req.body.username});
+  // res.json(req.body);
 });
