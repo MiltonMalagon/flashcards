@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 3000;
 
@@ -29,11 +30,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 //   req.on('end', () => {
 //     console.log(bodyString);
 //   });
+app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
-  //res.send(`<h1>This is Express!</h1>`);
+  //res.send(`<h1>This is Express!</h1>`, {"name": "Eric"});
   res.render('index');
 });
 
@@ -54,10 +56,11 @@ app.get('/sandbox', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-  res.render('hello');
+  res.render('hello', {name: req.cookies.username});
 });
 
 app.post('/hello', (req, res) => {
+  res.cookie('username', req.body.username);
   // console.dir(req.body);
   res.render('hello', {name: req.body.username});
   // res.json(req.body);
