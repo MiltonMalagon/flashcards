@@ -83,3 +83,8 @@ app.post('/hello', (req, res) => {
   //   res.render('/hello');
   // }
 });
+
+app.post('/goodbye', (req, res) => {
+  res.clearCookie('username')
+  res.redirect('/hello');
+});
