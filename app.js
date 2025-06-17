@@ -5,19 +5,19 @@ const app = express();
 const port = 3000;
 
 //const colors = ['red','orange','yellow','green','blue','purple'];
-const firstNames = [
-    'James', 
-    'Raphael', 
-    'Hector', 
-    'Victor', 
-    'Robert'];
-const lastNames = [
-    'Rickets',
-    'Donado',
-    'Perea',
-    'Claros',
-    'Georgescu'
-  ];
+// const firstNames = [
+//     'James', 
+//     'Raphael', 
+//     'Hector', 
+//     'Victor', 
+//     'Robert'];
+// const lastNames = [
+//     'Rickets',
+//     'Donado',
+//     'Perea',
+//     'Claros',
+//     'Georgescu'
+//   ];
 
 app.listen(port, () => {
   console.log(`The app is running on localhost: ${port}`);
@@ -36,7 +36,12 @@ app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
   //res.send(`<h1>This is Express!</h1>`, {"name": "Eric"});
-  res.render('index');
+  const name = req.cookies.username;
+  if (name) {
+    res.render('index', /*pug var name*/{/*name: name*/ name});
+  } else {
+    res.redirect('/hello');
+  }  
 });
 
 app.get('/cards', (req, res) => {
@@ -56,12 +61,25 @@ app.get('/sandbox', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-  res.render('hello', {name: req.cookies.username});
+  const name = req.cookies.username;
+  if (name) {
+    res.redirect('/');
+  } else {
+    res.render('hello');
+  }
+  // res.render('hello');
 });
 
 app.post('/hello', (req, res) => {
   res.cookie('username', req.body.username);
   // console.dir(req.body);
-  res.render('hello', {name: req.body.username});
+  // res.render('hello', {name: req.body.username});
+  res.redirect('/');
   // res.json(req.body);
+  // const cookie = res.cookie('username', req.body.username);
+  // if (cookie) {
+  //   res.redirect('/');
+  // } else {
+  //   res.render('/hello');
+  // }
 });
