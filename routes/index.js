@@ -11,16 +11,6 @@ router.get('/', (req, res) => {
   }  
 });
 
-router.get('/cards', (req, res) => {
-  res.render('card', {
-    prompt: "Who is buried in Grant's tomb?",
-    //hint: "Think about whose tomb it is."
-    //colors
-  });
-  //res.locals.prompt = "Who is buried in Grant's tomb?";
-  res.render('card');
-});
-
 router.get('/sandbox', (req, res) => {
   res.render('sandbox', {
     firstNames, lastNames

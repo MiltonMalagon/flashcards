@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const port = 3000;
 const routes = require('./routes/index');
+const cardRoutes = require('./routes/cards');
 
 //const colors = ['red','orange','yellow','green','blue','purple'];
 // const firstNames = [
@@ -43,6 +44,7 @@ app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(routes);
+app.use('/cards', cardRoutes);
 
 app.use((req, res, next) => {
   // console.log('Two');
