@@ -16,11 +16,32 @@ const {cards} = data;
 //   res.render('card');
 // });
 
-router.get('/', (req, res) => {
-  res.render('card', {
-    prompt: cards[0].question,
-    hint: cards[0].hint
-  });
+// router.get('/:id', (req, res) => {
+//   const {side} = req.query;
+//   const {id} = req.params;
+//   const text = cards[id][side];
+//   const {hint} = cards[id];
+//   const templateData = {text, hint};
+
+//   res.render('card', {
+//     prompt: cards[req.params.id].question,
+//     hint: cards[req.params.id].hint
+//   });
+// });
+
+router.get('/:id', (req, res) => {
+  const {side} = req.query;
+  const {id} = req.params;
+  const text = cards[id][side];
+  const {hint} = cards[id];
+  const templateData = {text};
+  // const templateData = {text, hint};
+
+  if (side === 'question') {
+    templateData.hint = hint;
+  }
+  
+  res.render('card', templateData);  
 });
 
 module.exports = router;
