@@ -34,11 +34,17 @@ router.get('/:id', (req, res) => {
   const {id} = req.params;
   const text = cards[id][side];
   const {hint} = cards[id];
-  const templateData = {text};
+  const templateData = {id, text};
+  // const templateData = {text};
   // const templateData = {text, hint};
 
   if (side === 'question') {
     templateData.hint = hint;
+    templateData.sideToShow = 'answer';
+    templateData.sideToShowDisplay = 'Answer'
+  } else if (side === 'answer') {
+    templateData.sideToShow = 'question';
+    templateData.sideToShowDisplay = 'Question';
   }
   
   res.render('card', templateData);  
