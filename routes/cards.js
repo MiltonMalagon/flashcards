@@ -15,23 +15,23 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const {id} = req.params;
   const {side} = req.query;
+  // const parsedQuery = req._parsedUrl.query;
+  const regex = /question|answer/;
+  
+  if (!side || /*!regex.test(side)*/!side.match(regex)) {
+    return res.redirect(`/cards/${id}?side=question`);
+  }
+
   const {hint} = cards[id];
   const text = cards[id][side];
   const name = req.cookies.username;
-  const parsedQuery = req._parsedUrl.query;
-  const regex = /question|answer/;
   const templateData = {id, text, name};
-  
-
-  if (!side || !regex.test(parsedQuery)) {
-    res.redirect(`/cards/${id}?side=question`);
-  }  
 
   if (side === 'question') {
     templateData.sideToShow = 'answer';
     templateData.hint = hint;
     templateData.sideToShowDisplay = 'Answer';
-
+    res.render('card', templateData);
     // templateData ---
     // {
     //   id: '2',
@@ -42,7 +42,6 @@ router.get('/:id', (req, res) => {
     //   sideToShowDisplay: 'Answer',
     //   _locals: [Object: null prototype] {}
     // }
-    res.render('card', templateData);
   }
   
   if (side === 'answer') {
