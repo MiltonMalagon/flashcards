@@ -1,5 +1,16 @@
 extends layout.pug
 
+//- templateData ---
+//- {
+//-   id: '2',
+//-   text: "What is a common ...?",
+//-   name: 'Hannah',
+//-   sideToShow: 'answer',
+//-   hint: 'It has the same abbreviation as "resolution"',
+//-   sideToShowDisplay: 'Answer',
+//-   _locals: [Object: null prototype] {}
+//- }
+
 block content
   section#content
     //ul 
@@ -10,3 +21,6 @@ block content
       p
         i Hint: #{hint}
     a(href=`${id}?side=${sideToShow}`)= sideToShowDisplay
+    br
+    br
+    a(href=`/cards`) Next card
