@@ -68,3 +68,19 @@ app.use((err, req, res, next) => {
   res.status(err.status);
   res.render('error', err);
 });
+
+//-- After render 'err' is:
+// Error: [ ... ] {
+//   status: 404,
+//   _locals: [Object: null prototype] {
+//     error: [Circular *1]
+//   }
+// }
+
+//-- After render 'res.locals' is:
+// locals: [ ... ] {
+//   error: Error: [ ... ] {
+//     status: 404,
+//     _locals: [Circular *1]
+//   }
+// }
