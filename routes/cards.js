@@ -30,7 +30,7 @@ router.get('/:id', (req, res) => {
   if (side === 'question') {
     templateData.sideToShow = 'answer';
     templateData.hint = hint;
-    templateData.sideToShowDisplay = 'Answer';
+    templateData.sideToShowDisplay = 'question';
     res.render('card', templateData);
     // templateData ---
     // {
@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
   
   if (side === 'answer') {
     templateData.sideToShow = 'question';
-    templateData.sideToShowDisplay = 'Question';
+    templateData.sideToShowDisplay = 'answer';
     res.render('card', templateData);
   }
 });

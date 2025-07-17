@@ -11,16 +11,32 @@ extends layout.pug
 //-   _locals: [Object: null prototype] {}
 //- }
 
-block content
-  section#content
-    //ul 
-      each color in colors
-        li= color
-    h2= text
-    if hint
-      p
-        i Hint: #{hint}
-    a(href=`${id}?side=${sideToShow}`)= sideToShowDisplay
-    br
-    br
-    a(href=`/cards`) Next card
+block cards
+  //- section#content
+  //-   //ul 
+  //-     each color in colors
+  //-       li= color
+  //-   h2= text
+  //-   if hint
+  //-     p
+  //-       i Hint: #{hint}
+  //-   a(href=`${id}?side=${sideToShow}`)= sideToShowDisplay
+  //-   br
+  //-   br
+  //-   a(href=`/cards`) Next card
+  section.flashcards
+    .card(class=sideToShowDisplay==='question'  ? 'card-question' : 'card-answer')
+      .card-header
+      h1.card-title= sideToShowDisplay
+      #content
+        h2= text
+        if hint
+          p#hint
+            i Hint: #{hint}
+      .card-flip-wrap
+        a(href=`${id}?side=${sideToShow}`)
+          img.card-flip(src='/public/img/flip.svg')
+      .card-next
+        a(href=href=`/cards`)
+          img(src='/public/img/next.svg')
+  

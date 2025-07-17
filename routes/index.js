@@ -29,7 +29,7 @@ router.get('/hello', (req, res) => {
 
 router.post('/hello', (req, res) => {
   res.cookie('username', req.body.username);
-  console.dir(res);
+  // console.dir(res);
   // console.dir(req.body);
   // res.render('hello', {name: req.body.username});
   res.redirect('/');
