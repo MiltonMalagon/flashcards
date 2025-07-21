@@ -1,7 +1,11 @@
-extends layout.pug
+extends app.pug
 
-block content
-  //- section#content 
-  //-   p
+block intro
   h1.namecard-prompt Let&apos;s get started
-  a.namecard-submit(href=`/cards/`) Begin!
+  a.namecard-submit(href='/cards') Begin!
+
+//- block content
+//-   //- section#content 
+//-   //-   p
+//-   h1.namecard-prompt Let&apos;s get started
+//-   a.namecard-submit(href=`/cards/`) Begin!

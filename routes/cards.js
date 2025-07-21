@@ -25,12 +25,12 @@ router.get('/:id', (req, res) => {
   const {hint} = cards[id];
   const text = cards[id][side];
   const name = req.cookies.username;
-  const templateData = {id, text, name};
+  const templateData = {id, side, text, name};
 
   if (side === 'question') {
     templateData.sideToShow = 'answer';
     templateData.hint = hint;
-    templateData.sideToShowDisplay = 'question';
+    templateData.sideToShowDisplay = 'Answer';
     res.render('card', templateData);
     // templateData ---
     // {
@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
   
   if (side === 'answer') {
     templateData.sideToShow = 'question';
-    templateData.sideToShowDisplay = 'answer';
+    templateData.sideToShowDisplay = 'Question';
     res.render('card', templateData);
   }
 });
