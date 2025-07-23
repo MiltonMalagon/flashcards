@@ -5,14 +5,3 @@ block intro
     label.namecard-prompt Please enter your name: 
       input.namecard-name(type='text', name='username')
     button.namecard-submit(type='submit') Submit
-
-//- block content
-//-   //- section#content
-//-   //-   if name
-//-   //-     h2 Welcome, #{name}! 
-//-   //-   else
-//-   form.namecard-form(action='/hello', method='POST')
-//-     label.namecard-prompt
-//-       | Please enter your name: 
-//-     input.namecard-name(type='text', name='username')
-//-     button.namecard-submit(type='submit') Submit

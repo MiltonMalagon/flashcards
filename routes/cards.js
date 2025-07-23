@@ -15,10 +15,9 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const {id} = req.params;
   const {side} = req.query;
-  // const parsedQuery = req._parsedUrl.query;
   const regex = /question|answer/;
   
-  if (!side || /*!regex.test(side)*/!side.match(regex)) {
+  if (!side || !side.match(regex)) {
     return res.redirect(`/cards/${id}?side=question`);
   }
 
@@ -32,16 +31,6 @@ router.get('/:id', (req, res) => {
     templateData.hint = hint;
     templateData.sideToShowDisplay = 'Answer';
     res.render('card', templateData);
-    // templateData ---
-    // {
-    //   id: '2',
-    //   text: "What is a common ...?",
-    //   name: 'Hannah',
-    //   sideToShow: 'answer',
-    //   hint: 'It has the same abbreviation as "resolution"',
-    //   sideToShowDisplay: 'Answer',
-    //   _locals: [Object: null prototype] {}
-    // }
   }
   
   if (side === 'answer') {

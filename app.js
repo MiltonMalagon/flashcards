@@ -6,40 +6,10 @@ const port = 3000;
 const mainRoutes = require('./routes/index');
 const cardRoutes = require('./routes/cards');
 
-//const colors = ['red','orange','yellow','green','blue','purple'];
-// const firstNames = [
-//     'James', 
-//     'Raphael', 
-//     'Hector', 
-//     'Victor', 
-//     'Robert'];
-// const lastNames = [
-//     'Rickets',
-//     'Donado',
-//     'Perea',
-//     'Claros',
-//     'Georgescu'
-//   ];
-
 app.listen(port, () => {
   console.log(`The app is running on localhost: ${port}`);
 });
 
-//Body Parser
-// let bodyString = ''
-//   req.on('data', chunk => bodyString += chunk.toString());
-//   req.on('end', () => {
-//     console.log(bodyString);
-//   });
-//Middleware test
-// app.use((req, res, next) => {
-//   // req.message = 'This message made it!';
-//   // console.log('One');
-//   const err = new Error('Oh noes!');
-//   err.status = 500;
-//   console.log('Hello');
-//   next(err);
-// });
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/public', express.static('public'));
@@ -50,8 +20,6 @@ app.use(mainRoutes);
 app.use('/cards', cardRoutes);
 
 app.use((req, res, next) => {
-  // console.log('Two');
-  // console.log(req.message);
   console.log('world!');
   next();
 });
@@ -68,19 +36,3 @@ app.use((err, req, res, next) => {
   res.status(err.status);
   res.render('error', err);
 });
-
-//-- After render 'err' is:
-// Error: [ ... ] {
-//   status: 404,
-//   _locals: [Object: null prototype] {
-//     error: [Circular *1]
-//   }
-// }
-
-//-- After render 'res.locals' is:
-// locals: [ ... ] {
-//   error: Error: [ ... ] {
-//     status: 404,
-//     _locals: [Circular *1]
-//   }
-// }

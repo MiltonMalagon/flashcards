@@ -209,7 +209,7 @@ input {
   background-color: #F5F3ED;
 }
 
-.card-question div:first-of-type {
+.card-question div.card-header/*:first-of-type*/ {
   background-image: url("../img/content-header-question.png");
   background-size: contain;
 }
